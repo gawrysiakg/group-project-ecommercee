@@ -1,6 +1,9 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.dto.*;
+import com.kodilla.ecommercee.dto.*;
+import com.kodilla.ecommercee.dto.ProductDto;
+import com.kodilla.ecommercee.dto.ProductSaveDto;
+import com.kodilla.ecommercee.dto.ProductUpdateDto;
 import com.kodilla.ecommercee.exception.*;
 import com.kodilla.ecommercee.mapper.*;
 import com.kodilla.ecommercee.service.*;

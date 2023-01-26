@@ -3,9 +3,8 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.Order;
-import com.kodilla.ecommercee.domain.dto.CartDto;
-import com.kodilla.ecommercee.domain.dto.CartItemDto;
-import com.kodilla.ecommercee.domain.dto.OrderDto;
+import com.kodilla.ecommercee.dto.CartDto;
+import com.kodilla.ecommercee.dto.OrderDto;
 import com.kodilla.ecommercee.exception.CartNotFoundException;
 import com.kodilla.ecommercee.exception.CartNotFoundWhileCreatingOrderException;
 import com.kodilla.ecommercee.exception.ProductNotFoundException;

@@ -23,11 +23,11 @@ public class Group {
     @OneToMany(targetEntity = Product.class, mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> productList = new ArrayList<>();
 
-    public Group(String name, String desc) {
-        this.name = String.valueOf(name);
-    }
+//    public Group(String name, String desc) {
+//        this.name = String.valueOf(name);
+//    }
 
-    public Group(Long id, String name) {
+    public Group(String name) {
     }
 }
 

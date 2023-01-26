@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.repository.ProductRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 @Transactional
+@DisplayName("Product Entity Test Suite")
 public class ProductEntityTestSuite {
     @Autowired
     private ProductRepository productRepository;
@@ -23,7 +25,7 @@ public class ProductEntityTestSuite {
     @Test
     public void testGetAll() {
         //Given
-        Group group = new Group("pet food", "food for pets");
+        Group group = new Group("pet food");
         Product product1 = new Product("whiskas", "delicious cat food", new BigDecimal(12.99), group);
         Product product2 = new Product("purina", "healthy cat food", new BigDecimal(14.99), group);
         Product product3 = new Product("royal canin", "natural cat food", new BigDecimal(19.99), group);
@@ -47,7 +49,7 @@ public class ProductEntityTestSuite {
     @Test
     public void testGetOne() {
         //Given
-        Group group = new Group("pet food", "food for pets");
+        Group group = new Group("pet food");
         Product product1 = new Product("whiskas", "delicious cat food", new BigDecimal(12.99), group);
         Product product2 = new Product("purina", "healthy cat food", new BigDecimal(14.99), group);
         Product product3 = new Product("royal canin", "natural cat food", new BigDecimal(19.99), group);
@@ -71,7 +73,7 @@ public class ProductEntityTestSuite {
     @Test
     public void testUpdate() {
         //Given
-        Group group = new Group("pet food", "food for pets");
+        Group group = new Group("pet food");
         Product product1 = new Product("whiskas", "delicious cat food", new BigDecimal(12.99), group);
         Product product2 = new Product("purina", "healthy cat food", new BigDecimal(14.99), group);
         Product product3 = new Product("royal canin", "natural cat food", new BigDecimal(19.99), group);
@@ -97,7 +99,7 @@ public class ProductEntityTestSuite {
     @Test
     public void testDelete() {
         //Given
-        Group group = new Group("pet food", "food for pets");
+        Group group = new Group("pet food");
         Product product1 = new Product("whiskas", "delicious cat food", new BigDecimal(12.99), group);
         Product product2 = new Product("purina", "healthy cat food", new BigDecimal(14.99), group);
         Product product3 = new Product("royal canin", "natural cat food", new BigDecimal(19.99), group);

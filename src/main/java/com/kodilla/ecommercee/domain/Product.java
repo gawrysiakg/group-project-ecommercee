@@ -34,7 +34,7 @@ public class Product {
     @Column(name = "OBSOLETE")
     private boolean obsolete = false;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany//(cascade = CascadeType.ALL)
     @JoinTable(
             name = "PRODUCT_CART",
             joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")},

@@ -1,16 +1,18 @@
-package com.kodilla.ecommercee.domain.dto;
+package com.kodilla.ecommercee.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 
-@Getter
 @AllArgsConstructor
-public class ProductDto {
-
+@NoArgsConstructor
+@Getter
+public class CartItemDto {
     private Long id;
     private String name;
     private String description;
     private BigDecimal price;
-    private String groupId;
+    private Long groupId;
 }

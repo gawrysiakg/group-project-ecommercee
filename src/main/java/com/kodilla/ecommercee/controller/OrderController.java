@@ -1,8 +1,8 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.Order;
-import com.kodilla.ecommercee.domain.dto.OrderRequestDto;
-import com.kodilla.ecommercee.domain.dto.OrderDto;
+import com.kodilla.ecommercee.dto.OrderRequestDto;
+import com.kodilla.ecommercee.dto.OrderDto;
 import com.kodilla.ecommercee.exception.CartNotFoundWhileCreatingOrderException;
 import com.kodilla.ecommercee.exception.OrderNotFoundException;
 import com.kodilla.ecommercee.exception.OrderWithGivenUserNotFoundException;

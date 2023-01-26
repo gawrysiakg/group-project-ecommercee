@@ -20,7 +20,7 @@ public class Cart {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
-    public User user;
+    private User user;
 
     @ManyToMany (cascade = CascadeType.ALL, mappedBy = "cartList")
     private List<Product> products = new ArrayList<>();

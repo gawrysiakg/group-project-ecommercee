@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.dto.SessionDto;
-import com.kodilla.ecommercee.domain.dto.UserAddDto;
+import com.kodilla.ecommercee.dto.SessionDto;
+import com.kodilla.ecommercee.dto.UserAddDto;
 import com.kodilla.ecommercee.service.SessionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/session")
+@RequestMapping("/sessions")
 @CrossOrigin("*")
 public class SessionController {
 

@@ -2,6 +2,7 @@ package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.UserRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,12 @@ public class CartEntityTestSuite {
     @Autowired
     private UserRepository userRepository;
 
+    @AfterEach
+    void cleanUp(){
+        cartRepository.deleteAll();
+    }
+
+
     @Test
     void createCartAndSaveToDb() {
         //Given
@@ -41,9 +48,6 @@ public class CartEntityTestSuite {
 
         //Then
         assertEquals(1, numberOfCarts);
-
-        //CleanUp
-        cartRepository.deleteAll();
     }
 
     @Test
@@ -67,9 +71,6 @@ public class CartEntityTestSuite {
 
         //Then
         assertEquals("Product2", name);
-
-        //CleanUp
-        cartRepository.deleteAll();
     }
 
     @Test
@@ -95,9 +96,6 @@ public class CartEntityTestSuite {
 
         //Then
         assertEquals("description2", product2Description);
-
-        //CleanUp
-        cartRepository.deleteAll();
     }
 
     @Test
@@ -124,8 +122,5 @@ public class CartEntityTestSuite {
 
         //Then
         assertEquals(1, numberOfProducts);
-
-        //CleanUp
-        cartRepository.deleteAll();
     }
 }

@@ -41,7 +41,7 @@ public class CartDbService {
         Product productToAdd = productRepository.findById(productId).orElseThrow(ProductNotFoundException::new);
         cart.getProducts().add(productToAdd);
         productToAdd.getCartList().add(cart);
-        productRepository.save(productToAdd);
+       // productRepository.save(productToAdd);
         return cartRepository.save(cart);
     }
 

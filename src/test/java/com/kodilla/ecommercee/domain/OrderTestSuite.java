@@ -4,6 +4,8 @@ import com.kodilla.ecommercee.exception.CartNotFoundWhileCreatingOrderException;
 import com.kodilla.ecommercee.exception.OrderNotFoundException;
 import com.kodilla.ecommercee.repository.*;
 import com.kodilla.ecommercee.service.OrderService;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@DisplayName("Order Entity Test Suite")
 public class OrderTestSuite {
 
     @Autowired
@@ -33,12 +36,27 @@ public class OrderTestSuite {
     @Autowired
     private OrderService orderService;
 
+    @AfterEach
+    void cleanUp() {
+        //CleanUp
+        try {
+            productRepository.deleteAll();
+            cartRepository.deleteAll();
+            userRepository.deleteAll();
+            groupRepository.deleteAll();
+            orderRepository.deleteAll();
+        } catch (Exception e) {
+            System.out.println("Error...");
+        }
+    }
+
+
     private void prepareOrder(){
         User user1 = new User( "nowak997", UserStatus.NOT_LOGGED_IN, "pass");
         Cart cart1 = new Cart( user1);
         user1.setCart(cart1);
         userRepository.save(user1);
-        Group group1 = new Group( "RTV", "Desc");
+        Group group1 = new Group( "RTV");
         Product laptop = new Product( "Dell", "Dell Inspiron 7610", new BigDecimal(5600), group1);
         Product phone = new Product( "Samsung", "Samsung A52", new BigDecimal(990), group1);
         group1.getProductList().add(laptop);
@@ -75,7 +93,7 @@ public class OrderTestSuite {
         Cart cart1 = new Cart( user1);
         user1.setCart(cart1);
         userRepository.save(user1);
-        Group group1 = new Group( "RTV", "Desc");
+        Group group1 = new Group( "RTV");
         Product laptop = new Product( "Dell", "Dell Inspiron 7610", new BigDecimal(5600), group1);
         Product phone = new Product( "Samsung", "Samsung A52", new BigDecimal(990), group1);
         group1.getProductList().add(laptop);
@@ -103,16 +121,6 @@ public class OrderTestSuite {
         assertEquals("nowak997", orderList.get(0).getUser().getUsername());
         assertEquals(2, orderList.get(0).getUser().getCart().getProducts().size());
 
-        //CleanUp
-        try {
-            productRepository.deleteAll();
-            cartRepository.deleteAll();
-            userRepository.deleteAll();
-            groupRepository.deleteAll();
-            orderRepository.deleteAll();
-        } catch (Exception e) {
-            System.out.println("Error...");
-        }
     }
 
     @Test
@@ -128,16 +136,6 @@ public class OrderTestSuite {
         assertEquals(1, orderList.size());
         assertEquals(LocalDate.of(2023, 1, 10), orderList.get(0).getOrderDate() );
 
-        //CleanUp
-        try {
-            productRepository.deleteAll();
-            cartRepository.deleteAll();
-            userRepository.deleteAll();
-            groupRepository.deleteAll();
-            orderRepository.deleteAll();
-        } catch (Exception e) {
-            System.out.println("Error...");
-        }
     }
 
     @Test
@@ -148,7 +146,7 @@ public class OrderTestSuite {
 
         List<Order> orderList = orderRepository.findAll();
         Order orderFromDb = orderList.get(0);
-        Group group2 = new Group( "Books", "Desc");
+        Group group2 = new Group( "Books");
         Product book = new Product( "Road to Java Junior", "Tom Burton, 2019", new BigDecimal(50), group2);
         group2.getProductList().add(book);
         groupRepository.save(group2);
@@ -172,16 +170,6 @@ public class OrderTestSuite {
         assertEquals(1, op1.getQty());
         assertEquals("nowak997", updatedOrderList.get(0).getUser().getUsername());
 
-        //CleanUp
-        try {
-            productRepository.deleteAll();
-            cartRepository.deleteAll();
-            userRepository.deleteAll();
-            groupRepository.deleteAll();
-            orderRepository.deleteAll();
-        } catch (Exception e) {
-            System.out.println("Error...");
-        }
     }
 
     @Test
@@ -203,16 +191,6 @@ public class OrderTestSuite {
         assertNotEquals(ordersFromRepository.size(), ordersFromRepositoryAfterDeletingOne.size());
         assertEquals(0, ordersFromRepositoryAfterDeletingOne.size());
 
-        //CleanUp
-        try {
-            productRepository.deleteAll();
-            cartRepository.deleteAll();
-            userRepository.deleteAll();
-            groupRepository.deleteAll();
-            orderRepository.deleteAll();
-        } catch (Exception e) {
-            System.out.println("Error...");
-        }
     }
 
 
@@ -225,7 +203,7 @@ public class OrderTestSuite {
         User user = new User("Adam009", UserStatus.NOT_LOGGED_IN, "abc");
         userRepository.save(user);
         Cart cart = new Cart(user);
-        cart.getProducts().add(new Product("ded", "ec", new BigDecimal(100), new Group("ede", "inne")));
+        cart.getProducts().add(new Product("ded", "ec", new BigDecimal(100), new Group("ede")));
         cartRepository.save(cart);
 
         // When
@@ -246,7 +224,7 @@ public class OrderTestSuite {
         User user = new User("Adam009", UserStatus.NOT_LOGGED_IN, "abc");
         userRepository.save(user);
         Cart cart = new Cart(user);
-        cart.getProducts().add(new Product("Product1", "esc", new BigDecimal(100), new Group("Group1", "Other")));
+        cart.getProducts().add(new Product("Product1", "esc", new BigDecimal(100), new Group("Group1")));
         cartRepository.save(cart);
         orderService.createOrder(cart.getId());
         List<Order> o = orderService.getALlOrders();

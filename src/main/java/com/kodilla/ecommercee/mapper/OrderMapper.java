@@ -4,8 +4,9 @@ import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.OrderProduct;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.User;
-import com.kodilla.ecommercee.domain.dto.OrderDto;
+import com.kodilla.ecommercee.dto.OrderDto;
 
+import com.kodilla.ecommercee.dto.UserDto;
 import com.kodilla.ecommercee.exception.UserNotFoundException;
 import com.kodilla.ecommercee.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,15 +19,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderMapper {
 
-
-    private final UserRepository userRepository;
     private final ProductMapper productMapper;
 
     public OrderDto mapToOrderDto(Order order) {
         List<Product> listOfProducts = new ArrayList<>();
-        for(OrderProduct op : order.getOrderProductSet()){
-            for(Long l = 1L; l<=op.getQty(); l++){
-                listOfProducts.add(op.getProduct());
+        for(OrderProduct orderProduct : order.getOrderProductSet()){
+            for(Long l = 1L; l<=orderProduct.getQty(); l++){
+                listOfProducts.add(orderProduct.getProduct());
             }
         }
         return new OrderDto(
@@ -38,11 +37,11 @@ public class OrderMapper {
     }
 
 
-    public Order mapToOrder(OrderDto orderDto) throws UserNotFoundException {
+    public Order mapToOrder(OrderDto orderDto, User user) throws UserNotFoundException {
         List<Product> list = productMapper.mapToProductList(orderDto.getProductList());
         Map<Product, Long> counts =
                 list.stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
-        User user = userRepository.findById(orderDto.getUserId()).orElseThrow(UserNotFoundException::new);
+        //User user = userRepository.findById(orderDto.getUserId()).orElseThrow(UserNotFoundException::new);
         Set<OrderProduct> orderProductSet = new HashSet<>();
         Order order = new Order(orderDto.getId(), orderDto.getOrderDate(), user);
         for (Map.Entry<Product, Long> entry : counts.entrySet()){

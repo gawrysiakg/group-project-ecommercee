@@ -2,8 +2,8 @@ package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.domain.Session;
 import com.kodilla.ecommercee.domain.User;
-import com.kodilla.ecommercee.domain.dto.SessionDto;
-import com.kodilla.ecommercee.domain.dto.UserAddDto;
+import com.kodilla.ecommercee.dto.SessionDto;
+import com.kodilla.ecommercee.dto.UserAddDto;
 import com.kodilla.ecommercee.exception.UserNotFoundException;
 import com.kodilla.ecommercee.repository.SessionRepository;
 import com.kodilla.ecommercee.repository.UserRepository;

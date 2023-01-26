@@ -1,17 +1,19 @@
 package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.domain.*;
-import com.kodilla.ecommercee.domain.dto.*;
+import com.kodilla.ecommercee.dto.ProductDto;
+import com.kodilla.ecommercee.dto.ProductSaveDto;
 import com.kodilla.ecommercee.repository.GroupRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProductMapper {
-    @Autowired
-    GroupRepository groupRepository;
+
+    private final GroupRepository groupRepository;
 
     public Product mapToProduct(final ProductSaveDto productSaveDto){
         Product product = new Product();

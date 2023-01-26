@@ -1,7 +1,9 @@
 package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.domain.*;
-import com.kodilla.ecommercee.domain.dto.*;
+import com.kodilla.ecommercee.dto.*;
+import com.kodilla.ecommercee.dto.ProductSaveDto;
+import com.kodilla.ecommercee.dto.ProductUpdateDto;
 import com.kodilla.ecommercee.exception.*;
 import com.kodilla.ecommercee.mapper.*;
 import com.kodilla.ecommercee.repository.*;
@@ -27,11 +29,11 @@ public class ProductDbService {
                 product.setObsolete(false);
                 setGroupToProduct(product, productSaveDto.getGroupId());
 
-                Group g = groupRepository.findById(Long.parseLong(productSaveDto.getGroupId())).orElse(null);
-                assert g != null;
-                g.getProductList().add(product);
-                groupRepository.save(g);
-                productRepository.save(product);
+               // Group g = groupRepository.findById(Long.parseLong(productSaveDto.getGroupId())).orElse(null);
+               // assert g != null;
+               // g.getProductList().add(product);
+               // groupRepository.save(g);
+                //productRepository.save(product);
             } else {
                 throw new RecordExistsException();
             }
@@ -77,7 +79,7 @@ public class ProductDbService {
             try {
                 Group group = groupRepository.findById(Long.parseLong(groupId)).orElseThrow(RecordNotExistsException::new);
                 product.setGroup(group);
-                groupRepository.save(group);
+               // groupRepository.save(group);
             } catch (RecordNotExistsException e) {
             }
         } else {

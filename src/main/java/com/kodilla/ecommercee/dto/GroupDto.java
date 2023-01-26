@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.domain.dto;
+package com.kodilla.ecommercee.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,4 @@ public class GroupDto {
 
     private Long id;
     private String name;
-
-    public GroupDto() {
-    }
 }

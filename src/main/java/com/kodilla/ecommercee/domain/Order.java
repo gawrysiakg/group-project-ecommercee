@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+//import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,7 +21,7 @@ public class Order {
     @Column(name = "ID", unique = true)
     private Long id;
 
-    @CreatedDate
+   // @CreatedDate
     @Column(name = "DATE")
     private LocalDate orderDate;
 

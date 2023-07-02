@@ -38,4 +38,7 @@ Prowadzono też codzienne DAILY na czacie grupowym, dzięki temu każdy uczestni
 - wygenerowanie losowego klucza ważnego godzinę po podaniu poprawnych danych użytkownika
 
 
+Przykładowy JSON z Postmana:
+
+![postman](specs/postman.png)
 
